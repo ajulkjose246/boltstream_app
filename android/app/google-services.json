@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "227379580980",
+    "project_id": "bolt-stream-apps",
+    "storage_bucket": "bolt-stream-apps.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:227379580980:android:7c19eb05eaac864921fa61",
+        "android_client_info": {
+          "package_name": "com.example.boltstream"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "227379580980-vkmf1k6iaoeuvc8g3j52m82bge5o74p5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuIaIZM4LsnNr6VoPapsBKBYyscRotsNU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "227379580980-vkmf1k6iaoeuvc8g3j52m82bge5o74p5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
