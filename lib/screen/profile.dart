@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class profileScreen extends StatefulWidget {
@@ -7,34 +8,44 @@ class profileScreen extends StatefulWidget {
   State<profileScreen> createState() => _profileScreenState();
 }
 
+void logout() {
+  FirebaseAuth.instance.signOut();
+}
+
+final user = FirebaseAuth.instance.currentUser!;
+
 class _profileScreenState extends State<profileScreen> {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: const [
+      children: [
         Column(
           children: [
-            Padding(
+            const Padding(
               padding: EdgeInsets.all(10.0),
               child: CircleAvatar(
-                radius: 50,
+                radius: 70,
+                backgroundColor: Colors.white,
                 backgroundImage: NetworkImage(
-                    'https://th.bing.com/th/id/R.5c80dbe394c9e7c9244442e0cd854681?rik=t2ZiCS6uJ%2f4YIA&pid=ImgRaw&r=0'),
-                child: Text(
-                  "Login",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25,
-                      fontWeight: FontWeight.w700),
-                ),
+                    'https://th.bing.com/th/id/R.666922dc6222464f97293cd1465c67e1?rik=wJLQDa63YTJB%2bA&pid=ImgRaw&r=0'),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.all(10.0),
-              child: TextField(
-                readOnly: true,
-                decoration: InputDecoration(hintText: "s"),
-              ),
+            Text(
+              user.email!,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
+            ),
+            Container(
+              width: 400,
+              child: Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStatePropertyAll(Colors.red)),
+                      onPressed: () {
+                        logout();
+                      },
+                      child: Text("LogOut"))),
             )
           ],
         )

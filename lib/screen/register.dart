@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class registerScreen extends StatefulWidget {
@@ -12,26 +13,15 @@ class _registerScreenState extends State<registerScreen> {
   final CollectionReference registerCollection =
       FirebaseFirestore.instance.collection("Register");
 
-  TextEditingController UName = TextEditingController();
   TextEditingController UEmail = TextEditingController();
-  TextEditingController UPhone = TextEditingController();
   TextEditingController UPassword = TextEditingController();
+  TextEditingController UCPassword = TextEditingController();
 
-  String userId = "";
-
-  void registerUser() {
-    final user = {
-      'UName': UName.text,
-      'UEmail': UEmail.text,
-      'UPhone': UPhone.text,
-      'UPassword': UPassword.text,
-    };
-
-    registerCollection.add(user).then((docRef) {
-      setState(() {
-        userId = docRef.id;
-      });
-    });
+  void registerUser() async {
+    if (UPassword.text == UCPassword.text) {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: UEmail.text, password: UPassword.text);
+    }
   }
 
   @override
@@ -49,19 +39,11 @@ class _registerScreenState extends State<registerScreen> {
                 child: CircleAvatar(
                   radius: 50,
                   backgroundImage: NetworkImage(
-                      'https://th.bing.com/th/id/R.5c80dbe394c9e7c9244442e0cd854681?rik=t2ZiCS6uJ%2f4YIA&pid=ImgRaw&r=0'),
+                      'https://th.bing.com/th/id/R.666922dc6222464f97293cd1465c67e1?rik=wJLQDa63YTJB%2bA&pid=ImgRaw&r=0'),
                   // child: Icon(Icons.image_outlined)
                 ),
               ),
             ],
-          ),
-          Padding(
-            padding: EdgeInsets.all(10.0),
-            child: TextField(
-              controller: UName,
-              decoration: InputDecoration(
-                  hintText: "Enter Name", border: OutlineInputBorder()),
-            ),
           ),
           Padding(
             padding: EdgeInsets.all(10.0),
@@ -74,17 +56,17 @@ class _registerScreenState extends State<registerScreen> {
           Padding(
             padding: EdgeInsets.all(10.0),
             child: TextField(
-              controller: UPhone,
+              controller: UPassword,
               decoration: InputDecoration(
-                  hintText: "Enter Phone Number", border: OutlineInputBorder()),
+                  hintText: "Enter Password", border: OutlineInputBorder()),
             ),
           ),
           Padding(
             padding: EdgeInsets.all(10.0),
             child: TextField(
-              controller: UPassword,
+              controller: UCPassword,
               decoration: InputDecoration(
-                  hintText: "Enter Password", border: OutlineInputBorder()),
+                  hintText: "Confirm Password", border: OutlineInputBorder()),
             ),
           ),
           Padding(
@@ -94,8 +76,7 @@ class _registerScreenState extends State<registerScreen> {
               child: ElevatedButton(
                 onPressed: () {
                   registerUser();
-                  Navigator.of(context).pushNamed('/', arguments: userId);
-                  // Navigator.pushNamed(context, "/");
+                  Navigator.pushNamed(context, "/login");
                 },
                 child: Text("Register Now"),
               ),
@@ -103,7 +84,6 @@ class _registerScreenState extends State<registerScreen> {
           ),
           Padding(
             padding: EdgeInsets.all(10.0),
-            child: Text(userId),
           ),
         ],
       ),
