@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+// ignore: camel_case_types
 class loginScreen extends StatefulWidget {
   const loginScreen({super.key});
 
@@ -7,6 +9,14 @@ class loginScreen extends StatefulWidget {
   State<loginScreen> createState() => _loginScreenState();
 }
 
+TextEditingController UEmail = TextEditingController();
+TextEditingController UPassword = TextEditingController();
+void loginUser() async {
+  await FirebaseAuth.instance
+      .signInWithEmailAndPassword(email: UEmail.text, password: UPassword.text);
+}
+
+// ignore: camel_case_types
 class _loginScreenState extends State<loginScreen> {
   @override
   Widget build(BuildContext context) {
@@ -23,16 +33,18 @@ class _loginScreenState extends State<loginScreen> {
                 // child: Icon(Icons.image_outlined)
               ),
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.all(10.0),
               child: TextField(
+                controller: UEmail,
                 decoration: InputDecoration(
                     hintText: "Enter Email Id", border: OutlineInputBorder()),
               ),
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.all(10.0),
               child: TextField(
+                controller: UPassword,
                 decoration: InputDecoration(
                     hintText: "Enter Password", border: OutlineInputBorder()),
               ),
@@ -42,7 +54,9 @@ class _loginScreenState extends State<loginScreen> {
               child: Container(
                   width: 400,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      loginUser();
+                    },
                     child: Text("Login"),
                   )),
             ),

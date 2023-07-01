@@ -1,10 +1,8 @@
+import 'package:boltstream/screen/auth.dart';
 import 'package:boltstream/screen/liveTV.dart';
-import 'package:boltstream/screen/login.dart';
 import 'package:boltstream/screen/movies.dart';
-import 'package:boltstream/screen/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 class homeScreen extends StatefulWidget {
   const homeScreen({super.key});
@@ -22,7 +20,7 @@ class _homeScreenState extends State<homeScreen> {
   List homeScreens = const [
     moviesScreen(),
     livetvScreen(),
-    loginScreen(),
+    userAuth(),
     Text("4")
   ];
   @override
@@ -43,6 +41,7 @@ class _homeScreenState extends State<homeScreen> {
               ],
       ),
       body: homeScreens.elementAt(indexNum),
+      // body: homeScreens.elementAt(indexNum),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
