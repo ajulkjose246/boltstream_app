@@ -1,4 +1,5 @@
 import 'package:boltstream/screen/addMovie.dart';
+import 'package:boltstream/screen/addTV.dart';
 import 'package:boltstream/screen/auth.dart';
 import 'package:boltstream/screen/home.dart';
 import 'package:boltstream/screen/login.dart';
@@ -27,6 +28,7 @@ class _boltStreamState extends State<boltStream> {
       routes: {
         '/': (context) => homeScreen(),
         '/addMovie': (context) => addMovieScreen(),
+        '/addTV': (context) => addTVScreen(),
         '/register': (context) => registerScreen(),
         '/login': (context) => loginScreen(),
         '/auth': (context) => userAuth(),

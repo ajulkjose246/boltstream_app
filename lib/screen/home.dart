@@ -17,6 +17,7 @@ final CollectionReference movies =
 class _homeScreenState extends State<homeScreen> {
   int indexNum = 0;
   bool actionIcon = false;
+  String addPage = "/addMovie";
   List homeScreens = const [
     moviesScreen(),
     livetvScreen(),
@@ -34,7 +35,7 @@ class _homeScreenState extends State<homeScreen> {
             : [
                 IconButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, "/addMovie");
+                    Navigator.pushNamed(context, addPage);
                   },
                   icon: Icon(Icons.add),
                 )
@@ -68,6 +69,11 @@ class _homeScreenState extends State<homeScreen> {
               actionIcon = true;
             } else {
               actionIcon = false;
+            }
+            if (val == 1) {
+              addPage = "/addTV";
+            } else {
+              addPage = "/addMovie";
             }
             indexNum = val;
           });

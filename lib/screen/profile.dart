@@ -8,11 +8,10 @@ class profileScreen extends StatefulWidget {
   State<profileScreen> createState() => _profileScreenState();
 }
 
+final user = FirebaseAuth.instance.currentUser!;
 void logout() {
   FirebaseAuth.instance.signOut();
 }
-
-final user = FirebaseAuth.instance.currentUser!;
 
 class _profileScreenState extends State<profileScreen> {
   @override
