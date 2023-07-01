@@ -1,4 +1,3 @@
-import 'package:boltstream/screen/register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -76,7 +75,7 @@ class _loginScreenState extends State<loginScreen> {
                           backgroundColor:
                               MaterialStatePropertyAll(Colors.green)),
                       onPressed: () {
-                        registerScreen();
+                        Navigator.pushNamed(context, '/register');
                       },
                       child: Text("Create New Account"),
                     )),

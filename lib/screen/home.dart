@@ -21,8 +21,8 @@ class _homeScreenState extends State<homeScreen> {
   List homeScreens = const [
     moviesScreen(),
     livetvScreen(),
+    Text("Watch Later"),
     userAuth(),
-    Text("4")
   ];
   @override
   Widget build(BuildContext context) {
@@ -34,6 +34,7 @@ class _homeScreenState extends State<homeScreen> {
             ? []
             : [
                 IconButton(
+                  tooltip: "Add",
                   onPressed: () {
                     Navigator.pushNamed(context, addPage);
                   },
@@ -46,26 +47,32 @@ class _homeScreenState extends State<homeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
+              tooltip: "Movies",
               icon: Icon(Icons.movie_outlined),
               label: 'Movies',
               backgroundColor: Colors.blue),
           BottomNavigationBarItem(
+              tooltip: "Live TV",
               icon: Icon(Icons.tv),
               label: 'Live TV',
               backgroundColor: Colors.blue),
           BottomNavigationBarItem(
-              icon: Icon(Icons.person_outlined),
-              label: 'Profile',
+              tooltip: "Watch Later",
+              icon: Icon(Icons.watch_later_outlined),
+              label: 'Watch Later',
               backgroundColor: Colors.blue),
           BottomNavigationBarItem(
-              icon: Icon(Icons.settings_outlined),
-              label: 'Settings',
+              tooltip: "Profile",
+              icon: Icon(Icons.person_outlined),
+              label: 'Profile',
               backgroundColor: Colors.blue),
         ],
         currentIndex: indexNum,
         onTap: (val) {
           setState(() {
             if (val == 2) {
+              actionIcon = true;
+            } else if (val == 3) {
               actionIcon = true;
             } else {
               actionIcon = false;

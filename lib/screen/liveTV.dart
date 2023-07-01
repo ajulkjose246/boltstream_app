@@ -45,7 +45,6 @@ class _livetvScreenState extends State<livetvScreen> {
                     ),
                     title: Text(LiveTVSnap['CName']),
                     // subtitle: Text(LiveTVSnap['MLanguage']),
-                    trailing: Icon(Icons.more_vert),
                     onTap: () {
                       // Handle onTap event
                     },

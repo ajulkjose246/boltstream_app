@@ -3,6 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class moviesScreen extends StatefulWidget {
   const moviesScreen({super.key});
@@ -14,9 +15,18 @@ class moviesScreen extends StatefulWidget {
 final CollectionReference movies =
     FirebaseFirestore.instance.collection("Movies");
 
+final user = FirebaseAuth.instance.currentUser;
+
 class _moviesScreenState extends State<moviesScreen> {
   @override
   Widget build(BuildContext context) {
+    bool wlIcon;
+    if (user == null) {
+      wlIcon = false;
+    } else {
+      wlIcon = true;
+    }
+
     return StreamBuilder(
       stream: movies.snapshots(),
       builder: (context, snapshot) {
@@ -45,7 +55,12 @@ class _moviesScreenState extends State<moviesScreen> {
                     ),
                     title: Text(movieSnap['MName']),
                     subtitle: Text(movieSnap['MLanguage']),
-                    trailing: Icon(Icons.more_vert),
+                    trailing: wlIcon
+                        ? IconButton(
+                            tooltip: "Add To Watch Later",
+                            onPressed: () {},
+                            icon: Icon(Icons.watch_later))
+                        : Icon(Icons.home),
                     onTap: () {
                       // Handle onTap event
                     },
