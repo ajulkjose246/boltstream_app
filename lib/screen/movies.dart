@@ -15,6 +15,9 @@ class moviesScreen extends StatefulWidget {
 final CollectionReference movies =
     FirebaseFirestore.instance.collection("Movies");
 
+final CollectionReference watchlaterCollection =
+    FirebaseFirestore.instance.collection("WatchLater");
+
 final user = FirebaseAuth.instance.currentUser;
 
 class _moviesScreenState extends State<moviesScreen> {
@@ -25,6 +28,26 @@ class _moviesScreenState extends State<moviesScreen> {
       wlIcon = false;
     } else {
       wlIcon = true;
+    }
+
+    void addWatchLater(String mid) async {
+      final data = {
+        'UID': user!.email!,
+        'MID': mid,
+      };
+
+      final querySnapshot = await watchlaterCollection
+          .where('UID', isEqualTo: user!.email!)
+          .where('MID', isEqualTo: mid)
+          .get();
+
+      if (querySnapshot.docs.isEmpty) {
+        // Data does not exist, add it to the collection
+        watchlaterCollection.add(data);
+      } else {
+        // Data already exists
+        print('Data already exists in Watchlater collection');
+      }
     }
 
     return StreamBuilder(
@@ -58,8 +81,12 @@ class _moviesScreenState extends State<moviesScreen> {
                     trailing: wlIcon
                         ? IconButton(
                             tooltip: "Add To Watch Later",
-                            onPressed: () {},
-                            icon: Icon(Icons.watch_later))
+                            color: Colors.blue,
+                            onPressed: () {
+                              addWatchLater(movieSnap.id);
+                            },
+                            icon: Icon(Icons.watch_later),
+                          )
                         : Icon(Icons.home),
                     onTap: () {
                       // Handle onTap event
