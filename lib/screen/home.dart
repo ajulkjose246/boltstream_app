@@ -1,6 +1,7 @@
 import 'package:boltstream/screen/auth.dart';
 import 'package:boltstream/screen/liveTV.dart';
 import 'package:boltstream/screen/movies.dart';
+import 'package:boltstream/screen/watchlater.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -21,7 +22,7 @@ class _homeScreenState extends State<homeScreen> {
   List homeScreens = const [
     moviesScreen(),
     livetvScreen(),
-    Text("Watch Later"),
+    watchlaterScreen(),
     userAuth(),
   ];
   @override

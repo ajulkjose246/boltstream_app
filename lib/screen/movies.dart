@@ -4,6 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class moviesScreen extends StatefulWidget {
   const moviesScreen({super.key});
@@ -41,12 +42,28 @@ class _moviesScreenState extends State<moviesScreen> {
           .where('MID', isEqualTo: mid)
           .get();
 
-      if (querySnapshot.docs.isEmpty) {
-        // Data does not exist, add it to the collection
-        watchlaterCollection.add(data);
+      if (querySnapshot.docs.isNotEmpty) {
+        // Data already exists, remove it from the collection
+        querySnapshot.docs.forEach((doc) {
+          doc.reference.delete();
+        });
+        Fluttertoast.showToast(
+          msg: 'Movied Successfully Removed',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.black.withOpacity(0.8),
+          textColor: Colors.white,
+        );
       } else {
-        // Data already exists
-        print('Data already exists in Watchlater collection');
+        // Add the data to the collection
+        watchlaterCollection.add(data);
+        Fluttertoast.showToast(
+          msg: 'Movied Successfully Added',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.black.withOpacity(0.8),
+          textColor: Colors.white,
+        );
       }
     }
 
