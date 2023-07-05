@@ -30,16 +30,19 @@ class _livetvScreenState extends State<livetvScreen> {
                 padding: const EdgeInsets.all(10.0),
                 child: Card(
                   child: ListTile(
-                    leading: Container(
-                      width: 80, // Set the desired width
-                      height: 80, // Set the desired height
-                      decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        borderRadius: BorderRadius.circular(5),
-                        image: DecorationImage(
-                          image: NetworkImage(LiveTVSnap[
-                              'CLogo']), // Replace with your image asset path
-                          fit: BoxFit.cover,
+                    leading: Padding(
+                      padding: const EdgeInsets.all(3.0),
+                      child: Container(
+                        width: 80, // Set the desired width
+                        height: 80, // Set the desired height
+                        decoration: BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          borderRadius: BorderRadius.circular(5),
+                          image: DecorationImage(
+                            image: NetworkImage(LiveTVSnap[
+                                'CLogo']), // Replace with your image asset path
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
@@ -47,6 +50,8 @@ class _livetvScreenState extends State<livetvScreen> {
                     // subtitle: Text(LiveTVSnap['MLanguage']),
                     onTap: () {
                       // Handle onTap event
+                      Navigator.pushNamed(context, '/Live',
+                          arguments: LiveTVSnap.id);
                     },
                   ),
                 ),

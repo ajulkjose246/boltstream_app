@@ -2,6 +2,7 @@ import 'package:boltstream/screen/addMovie.dart';
 import 'package:boltstream/screen/addTV.dart';
 import 'package:boltstream/screen/auth.dart';
 import 'package:boltstream/screen/home.dart';
+import 'package:boltstream/screen/liveTVPlayer.dart';
 import 'package:boltstream/screen/login.dart';
 import 'package:boltstream/screen/register.dart';
 import 'package:boltstream/screen/videoPlayer.dart';
@@ -34,6 +35,7 @@ class _boltStreamState extends State<boltStream> {
         '/login': (context) => loginScreen(),
         '/auth': (context) => userAuth(),
         '/video': (context) => VideoScreen(),
+        '/Live': (context) => LiveTVPlayerScreen(),
       },
       initialRoute: '/',
     );
