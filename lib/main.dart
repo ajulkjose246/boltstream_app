@@ -4,6 +4,7 @@ import 'package:boltstream/screen/auth.dart';
 import 'package:boltstream/screen/home.dart';
 import 'package:boltstream/screen/login.dart';
 import 'package:boltstream/screen/register.dart';
+import 'package:boltstream/screen/videoPlayer.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -32,6 +33,7 @@ class _boltStreamState extends State<boltStream> {
         '/register': (context) => registerScreen(),
         '/login': (context) => loginScreen(),
         '/auth': (context) => userAuth(),
+        '/video': (context) => VideoScreen(),
       },
       initialRoute: '/',
     );

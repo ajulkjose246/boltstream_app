@@ -106,7 +106,8 @@ class _moviesScreenState extends State<moviesScreen> {
                           )
                         : Icon(Icons.home),
                     onTap: () {
-                      // Handle onTap event
+                      Navigator.pushNamed(context, '/video',
+                          arguments: movieSnap.id);
                     },
                   ),
                 ),
