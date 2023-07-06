@@ -1,5 +1,5 @@
 # boltstream
- <a href="https://firebasestorage.googleapis.com/v0/b/bolt-stream-apps.appspot.com/o/Bolt-Stream.apk?alt=media&token=57d1f1f2-f656-4934-8989-ea9d74f042a1">Download App</a><br>
+ <a style="text-decoration:none" href="https://firebasestorage.googleapis.com/v0/b/bolt-stream-apps.appspot.com/o/Bolt-Stream.apk?alt=media&token=57d1f1f2-f656-4934-8989-ea9d74f042a1">Download App</a><br><br>
 A new Flutter project.
 
 ## Getting Started
